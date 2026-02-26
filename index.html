@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AyurSutra - Ayurvedic Healthcare</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Header with Login Button -->
+  <header class="header">
+    <div class="container">
+      <div class="logo">
+        <h1><i class="fas fa-leaf"></i> AyurSutra</h1>
+        <p>Traditional Ayurvedic Healthcare</p>
+      </div>
+      <div class="login-section">
+        <a href="#appointment" class="appointment-btn">
+          <i class="fas fa-calendar-plus"></i> Book Appointment
+        </a>
+        <div class="login-dropdown">
+          <button class="login-btn" onclick="toggleDropdown()">
+            <i class="fas fa-user"></i> Login
+          </button>
+          <div class="dropdown-content" id="loginDropdown">
+            <a href="AdminPage/login.html">
+              <i class="fas fa-user-shield"></i> Admin Login
+            </a>
+            <a href="DoctorPage/doctor-login.html">
+              <i class="fas fa-user-md"></i> Doctor Login
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h2>Welcome to AyurSutra</h2>
+      <p>Experience the ancient wisdom of Ayurveda with modern healthcare management</p>
+      <div class="hero-features">
+        <div class="feature">
+          <i class="fas fa-leaf"></i>
+          <h3>Natural Healing</h3>
+          <p>Traditional Ayurvedic treatments for holistic wellness</p>
+        </div>
+        <div class="feature">
+          <i class="fas fa-user-md"></i>
+          <h3>Expert Doctors</h3>
+          <p>Experienced practitioners in Ayurvedic medicine</p>
+        </div>
+        <div class="feature">
+          <i class="fas fa-chart-line"></i>
+          <h3>Modern Management</h3>
+          <p>Advanced digital systems for patient care</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Appointment Booking Section -->
+  <section class="appointment" id="appointment">
+    <div class="container">
+      <div class="appointment-header">
+        <h2><i class="fas fa-calendar-plus"></i> Book Your Appointment</h2>
+        <p>Schedule a consultation with our expert Ayurvedic practitioners</p>
+      </div>
+      
+      <div class="appointment-container">
+        <div class="appointment-info">
+          <h3>Why Choose Our Consultation?</h3>
+          <div class="info-points">
+            <div class="info-point">
+              <i class="fas fa-user-md"></i>
+              <div>
+                <h4>Expert Practitioners</h4>
+                <p>Certified Ayurvedic doctors with years of experience</p>
+              </div>
+            </div>
+            <div class="info-point">
+              <i class="fas fa-clock"></i>
+              <div>
+                <h4>Flexible Timing</h4>
+                <p>Available slots from 9 AM to 6 PM, 6 days a week</p>
+              </div>
+            </div>
+            <div class="info-point">
+              <i class="fas fa-stethoscope"></i>
+              <div>
+                <h4>Comprehensive Care</h4>
+                <p>Complete health assessment and personalized treatment</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="appointment-form-container">
+          <form id="appointmentForm" class="appointment-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="patientName"><i class="fas fa-user"></i> Full Name</label>
+                <input type="text" id="patientName" name="patientName" required placeholder="Enter your full name">
+              </div>
+              <div class="form-group">
+                <label for="patientAge"><i class="fas fa-birthday-cake"></i> Age</label>
+                <input type="number" id="patientAge" name="patientAge" required placeholder="Your age" min="1" max="120">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="patientPhone"><i class="fas fa-phone"></i> Phone Number</label>
+                <input type="tel" id="patientPhone" name="patientPhone" required placeholder="Your contact number">
+              </div>
+              <div class="form-group">
+                <label for="patientEmail"><i class="fas fa-envelope"></i> Email</label>
+                <input type="email" id="patientEmail" name="patientEmail" placeholder="Your email (optional)">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="healthProblem"><i class="fas fa-notes-medical"></i> Health Problem/Concern</label>
+              <textarea id="healthProblem" name="healthProblem" required placeholder="Describe your health concern or symptoms" rows="4"></textarea>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="preferredDate"><i class="fas fa-calendar"></i> Preferred Date</label>
+                <input type="date" id="preferredDate" name="preferredDate" required min="">
+              </div>
+              <div class="form-group">
+                <label for="preferredTime"><i class="fas fa-clock"></i> Preferred Time</label>
+                <select id="preferredTime" name="preferredTime" required>
+                  <option value="">Select time slot</option>
+                  <option value="09:00">09:00 AM</option>
+                  <option value="10:00">10:00 AM</option>
+                  <option value="11:00">11:00 AM</option>
+                  <option value="12:00">12:00 PM</option>
+                  <option value="14:00">02:00 PM</option>
+                  <option value="15:00">03:00 PM</option>
+                  <option value="16:00">04:00 PM</option>
+                  <option value="17:00">05:00 PM</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="doctorPreference"><i class="fas fa-user-md"></i> Doctor Preference (Optional)</label>
+              <select id="doctorPreference" name="doctorPreference">
+                <option value="">Any available doctor</option>
+                <option value="Dr. Sharma">Dr. Sharma - Panchakarma Specialist</option>
+                <option value="Dr. Jain">Dr. Jain - Herbal Medicine Expert</option>
+                <option value="Dr. Patel">Dr. Patel - General Ayurvedic Practice</option>
+              </select>
+            </div>
+
+            <button type="submit" class="submit-appointment-btn">
+              <i class="fas fa-calendar-check"></i> Book Appointment
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about">
+    <div class="container">
+      <div class="about-content">
+        <div class="about-text">
+          <h2>About AyurSutra</h2>
+          <p>AyurSutra combines the time-tested principles of Ayurveda with modern healthcare management systems. Our platform provides comprehensive solutions for both patients and healthcare providers.</p>
+          <ul>
+            <li><i class="fas fa-check"></i> Personalized Ayurvedic treatments</li>
+            <li><i class="fas fa-check"></i> Digital patient management</li>
+            <li><i class="fas fa-check"></i> Expert consultation services</li>
+            <li><i class="fas fa-check"></i> Comprehensive health tracking</li>
+          </ul>
+        </div>
+        <div class="about-image">
+          <img src="AdminPage/Virechana-in-Ayurveda-panchakarma-Treatment.jpg" alt="Ayurvedic Treatment" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="services">
+    <div class="container">
+      <h2>Our Services</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <i class="fas fa-spa"></i>
+          <h3>Panchakarma</h3>
+          <p>Complete detoxification and rejuvenation therapy</p>
+        </div>
+        <div class="service-card">
+          <i class="fas fa-seedling"></i>
+          <h3>Herbal Medicine</h3>
+          <p>Natural remedies using traditional herbs</p>
+        </div>
+        <div class="service-card">
+          <i class="fas fa-hand-holding-medical"></i>
+          <h3>Therapeutic Massage</h3>
+          <p>Healing massages with medicated oils</p>
+        </div>
+        <div class="service-card">
+          <i class="fas fa-brain"></i>
+          <h3>Mental Wellness</h3>
+          <p>Ayurvedic approaches to mental health</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3><i class="fas fa-leaf"></i> AyurSutra</h3>
+          <p>Bridging ancient wisdom with modern healthcare technology.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Contact Info</h4>
+          <p><i class="fas fa-phone"></i> +91 12345 67890</p>
+          <p><i class="fas fa-envelope"></i> info@ayursutra.com</p>
+          <p><i class="fas fa-map-marker-alt"></i> Ayurvedic Center, India</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 AyurSutra. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Set minimum date to today
+    document.addEventListener('DOMContentLoaded', function() {
+      const today = new Date().toISOString().split('T')[0];
+      document.getElementById('preferredDate').min = today;
+      
+      // Add date change event listener for time slot availability
+      document.getElementById('preferredDate').addEventListener('change', function() {
+        updateAvailableTimeSlots();
+      });
+    });
+
+    function updateAvailableTimeSlots() {
+      const selectedDate = document.getElementById('preferredDate').value;
+      const timeSelect = document.getElementById('preferredTime');
+      
+      if (selectedDate) {
+        const appointments = JSON.parse(localStorage.getItem('appointments') || '[]');
+        const allTimeSlots = [
+          { value: '09:00', label: '09:00 AM' },
+          { value: '10:00', label: '10:00 AM' },
+          { value: '11:00', label: '11:00 AM' },
+          { value: '12:00', label: '12:00 PM' },
+          { value: '14:00', label: '02:00 PM' },
+          { value: '15:00', label: '03:00 PM' },
+          { value: '16:00', label: '04:00 PM' },
+          { value: '17:00', label: '05:00 PM' }
+        ];
+        
+        // Get booked time slots for the selected date (only confirmed appointments)
+        const bookedSlots = appointments
+          .filter(apt => apt.preferredDate === selectedDate && apt.status === 'Confirmed')
+          .map(apt => apt.preferredTime);
+        
+        // Clear existing options
+        timeSelect.innerHTML = '<option value="">Select time slot</option>';
+        
+        // Add available time slots
+        const availableSlots = allTimeSlots.filter(slot => !bookedSlots.includes(slot.value));
+        
+        if (availableSlots.length > 0) {
+          availableSlots.forEach(slot => {
+            const option = document.createElement('option');
+            option.value = slot.value;
+            option.textContent = slot.label;
+            timeSelect.appendChild(option);
+          });
+        } else {
+          timeSelect.innerHTML = '<option value="">No available time slots for this date</option>';
+        }
+      }
+    }
+
+    function toggleDropdown() {
+      const dropdown = document.getElementById('loginDropdown');
+      dropdown.classList.toggle('show');
+    }
+
+    // Close dropdown when clicking outside
+    window.addEventListener('click', function(event) {
+      if (!event.target.matches('.login-btn')) {
+        const dropdowns = document.getElementsByClassName('dropdown-content');
+        for (let i = 0; i < dropdowns.length; i++) {
+          const openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
+      }
+    });
+
+    // Handle appointment form submission
+    document.getElementById('appointmentForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Get form data
+      const formData = {
+        id: generateAppointmentId(),
+        patientName: document.getElementById('patientName').value,
+        patientAge: document.getElementById('patientAge').value,
+        patientPhone: document.getElementById('patientPhone').value,
+        patientEmail: document.getElementById('patientEmail').value,
+        healthProblem: document.getElementById('healthProblem').value,
+        preferredDate: document.getElementById('preferredDate').value,
+        preferredTime: document.getElementById('preferredTime').value,
+        doctorPreference: document.getElementById('doctorPreference').value || 'Any available doctor',
+        status: 'Pending',
+        bookingDate: new Date().toISOString().split('T')[0],
+        bookingTime: new Date().toLocaleTimeString()
+      };
+
+      // Save to localStorage
+      let appointments = JSON.parse(localStorage.getItem('appointments') || '[]');
+      appointments.push(formData);
+      localStorage.setItem('appointments', JSON.stringify(appointments));
+
+      // Show success message
+      showAppointmentSuccess(formData);
+      
+      // Reset form
+      this.reset();
+    });
+
+    function generateAppointmentId() {
+      return 'APT' + Date.now().toString().slice(-6);
+    }
+
+    function showAppointmentSuccess(data) {
+      const successHTML = `
+        <div class="appointment-success" style="
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: rgba(0,0,0,0.5);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          z-index: 1000;
+        ">
+          <div style="
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+          ">
+            <i class="fas fa-check-circle" style="color: #2e7d32; font-size: 3rem; margin-bottom: 1rem;"></i>
+            <h3 style="color: #2e7d32; margin-bottom: 1rem;">Appointment Booked Successfully!</h3>
+            <p><strong>Appointment ID:</strong> ${data.id}</p>
+            <p><strong>Date:</strong> ${data.preferredDate}</p>
+            <p><strong>Time:</strong> ${data.preferredTime}</p>
+            <p><strong>Doctor:</strong> ${data.doctorPreference}</p>
+            <p style="margin: 1rem 0; color: #666;">We will contact you shortly to confirm your appointment.</p>
+            <button onclick="closeSuccessMessage()" style="
+              background: #2e7d32;
+              color: white;
+              border: none;
+              padding: 10px 20px;
+              border-radius: 6px;
+              cursor: pointer;
+            ">OK</button>
+          </div>
+        </div>
+      `;
+      
+      document.body.insertAdjacentHTML('beforeend', successHTML);
+    }
+
+    function closeSuccessMessage() {
+      const successElement = document.querySelector('.appointment-success');
+      if (successElement) {
+        successElement.remove();
+      }
+    }
+
+    // Smooth scroll for appointment link
+    document.querySelector('a[href="#appointment"]').addEventListener('click', function(e) {
+      e.preventDefault();
+      document.getElementById('appointment').scrollIntoView({
+        behavior: 'smooth'
+      });
+    });
+  </script>
+</body>
+</html>

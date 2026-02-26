@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        input {
+            padding: 10px;
+            margin: 5px;
+            width: 200px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+        }
+        .result {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+    </style>
+</head>
+<body>
+    <h1>Login Credentials Test</h1>
+    
+    <div class="test-section">
+        <h2>Admin Login Test</h2>
+        <p><strong>Expected:</strong> Username: "Admin", Password: "admin123"</p>
+        <input type="text" id="adminUser" placeholder="Username" value="Admin">
+        <input type="password" id="adminPass" placeholder="Password" value="admin123">
+        <button onclick="testAdminLogin()">Test Admin Login</button>
+        <div id="adminResult" class="result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Doctor Login Test</h2>
+        <p><strong>Expected:</strong> Username: "doctor", Password: "doctor123"</p>
+        <input type="text" id="doctorUser" placeholder="Username" value="doctor">
+        <input type="password" id="doctorPass" placeholder="Password" value="doctor123">
+        <button onclick="testDoctorLogin()">Test Doctor Login</button>
+        <div id="doctorResult" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Navigation Links</h2>
+        <a href="index.html" style="margin: 10px; padding: 10px; background: #007bff; color: white; text-decoration: none; border-radius: 4px;">Go to Landing Page</a>
+        <a href="AdminPage/login.html" style="margin: 10px; padding: 10px; background: #28a745; color: white; text-decoration: none; border-radius: 4px;">Admin Login Page</a>
+        <a href="DoctorPage/doctor-login.html" style="margin: 10px; padding: 10px; background: #17a2b8; color: white; text-decoration: none; border-radius: 4px;">Doctor Login Page</a>
+    </div>
+
+    <script>
+        // Initialize sample doctors for testing
+        function initializeSampleDoctors() {
+            if (!localStorage.getItem('doctors')) {
+                const sampleDoctors = [
+                    { id: "doctor", password: "doctor123", name: "Dr. Default" },
+                    { id: "doctor@ayurveda.com", password: "doctor123", name: "Dr. Sharma" },
+                    { id: "drjain@ayurveda.com", password: "doctor123", name: "Dr. Jain" },
+                    { id: "1234567890", password: "doctor123", name: "Dr. Patel" }
+                ];
+                localStorage.setItem('doctors', JSON.stringify(sampleDoctors));
+            }
+        }
+
+        function testAdminLogin() {
+            const username = document.getElementById('adminUser').value;
+            const password = document.getElementById('adminPass').value;
+            const resultDiv = document.getElementById('adminResult');
+            
+            if (username === "Admin" && password === "admin123") {
+                resultDiv.className = "result success";
+                resultDiv.innerHTML = "✅ Admin login credentials are CORRECT!";
+            } else {
+                resultDiv.className = "result error";
+                resultDiv.innerHTML = "❌ Admin login credentials are INCORRECT. Expected: 'Admin' / 'admin123'";
+            }
+        }
+
+        function testDoctorLogin() {
+            initializeSampleDoctors(); // Make sure doctors are initialized
+            
+            const username = document.getElementById('doctorUser').value;
+            const password = document.getElementById('doctorPass').value;
+            const resultDiv = document.getElementById('doctorResult');
+            
+            const doctors = JSON.parse(localStorage.getItem('doctors') || '[]');
+            const found = doctors.find(doc => doc.id === username && doc.password === password);
+            
+            if (found) {
+                resultDiv.className = "result success";
+                resultDiv.innerHTML = `✅ Doctor login credentials are CORRECT! Found: ${found.name}`;
+            } else {
+                resultDiv.className = "result error";
+                resultDiv.innerHTML = "❌ Doctor login credentials are INCORRECT. Expected: 'doctor' / 'doctor123'";
+            }
+        }
+
+        // Initialize on page load
+        initializeSampleDoctors();
+    </script>
+</body>
+</html>

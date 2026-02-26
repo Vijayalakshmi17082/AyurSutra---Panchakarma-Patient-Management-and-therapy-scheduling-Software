@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Debug Doctor Login</title>
+</head>
+<body>
+    <h1>Debug Doctor Login System</h1>
+    
+    <div>
+        <h2>Test 1: Check localStorage</h2>
+        <button onclick="checkLocalStorage()">Check What's in localStorage</button>
+        <div id="storageResult"></div>
+    </div>
+    
+    <div>
+        <h2>Test 2: Create Test Doctor</h2>
+        <button onclick="createTestDoctor()">Create Test Doctor</button>
+        <div id="createResult"></div>
+    </div>
+    
+    <div>
+        <h2>Test 3: Try Login</h2>
+        <input type="text" id="testUsername" placeholder="Doctor ID" value="DOC001">
+        <input type="text" id="testPassword" placeholder="Password">
+        <button onclick="testLogin()">Test Login</button>
+        <div id="loginResult"></div>
+    </div>
+    
+    <div>
+        <h2>Actions</h2>
+        <button onclick="clearAllData()">Clear All Data</button>
+        <button onclick="resetSystem()">Reset System</button>
+    </div>
+
+    <script>
+        function checkLocalStorage() {
+            const doctors = JSON.parse(localStorage.getItem('doctors') || '[]');
+            const result = document.getElementById('storageResult');
+            
+            if (doctors.length === 0) {
+                result.innerHTML = '<p style="color: red;">No doctors found in localStorage!</p>';
+            } else {
+                let html = '<h3>Found ' + doctors.length + ' doctor(s):</h3>';
+                doctors.forEach((doc, i) => {
+                    html += `<div style="border: 1px solid #ccc; padding: 10px; margin: 5px;">
+                        <strong>Doctor ${i+1}:</strong><br>
+                        ID: ${doc.id}<br>
+                        Username: ${doc.username || 'N/A'}<br>
+                        Password: ${doc.password}<br>
+                        Name: ${doc.name}<br>
+                        Status: ${doc.status || 'N/A'}<br>
+                        Specialization: ${doc.spec || 'N/A'}
+                    </div>`;
+                });
+                result.innerHTML = html;
+            }
+        }
+        
+        function createTestDoctor() {
+            const testDoctor = {
+                id: "DOC001",
+                username: "dr_test",
+                password: "test123",
+                name: "Dr. Test",
+                status: "Active",
+                spec: "General",
+                contact: "1234567890",
+                email: "test@ayursutra.clinic",
+                joinDate: new Date().toISOString().split('T')[0],
+                patientsCount: 0
+            };
+            
+            let doctors = JSON.parse(localStorage.getItem('doctors') || '[]');
+            
+            // Remove existing test doctor if present
+            doctors = doctors.filter(d => d.id !== 'DOC001');
+            
+            // Add new test doctor
+            doctors.push(testDoctor);
+            localStorage.setItem('doctors', JSON.stringify(doctors));
+            
+            document.getElementById('createResult').innerHTML = `
+                <p style="color: green;">Test doctor created!</p>
+                <p>Try logging in with:</p>
+                <p><strong>ID:</strong> DOC001</p>
+                <p><strong>Password:</strong> test123</p>
+            `;
+            
+            // Update password field
+            document.getElementById('testPassword').value = 'test123';
+        }
+        
+        function testLogin() {
+            const username = document.getElementById('testUsername').value;
+            const password = document.getElementById('testPassword').value;
+            const doctors = JSON.parse(localStorage.getItem('doctors') || '[]');
+            
+            console.log('Testing login with:', username, password);
+            console.log('Available doctors:', doctors);
+            
+            const found = doctors.find(doc => {
+                const idMatch = doc.id && doc.id.toLowerCase() === username.toLowerCase();
+                const usernameMatch = doc.username && doc.username.toLowerCase() === username.toLowerCase();
+                const passwordMatch = doc.password === password;
+                const isActive = doc.status === 'Active' || !doc.status;
+                
+                console.log(`Checking doctor ${doc.name}:`, {
+                    idMatch,
+                    usernameMatch, 
+                    passwordMatch,
+                    isActive
+                });
+                
+                return (idMatch || usernameMatch) && passwordMatch && isActive;
+            });
+            
+            const result = document.getElementById('loginResult');
+            if (found) {
+                result.innerHTML = `<p style="color: green;">✅ Login successful! Found: ${found.name}</p>`;
+            } else {
+                result.innerHTML = `<p style="color: red;">❌ Login failed!</p>`;
+            }
+        }
+        
+        function clearAllData() {
+            localStorage.removeItem('doctors');
+            localStorage.removeItem('patients');
+            localStorage.removeItem('appointments');
+            alert('All data cleared!');
+        }
+        
+        function resetSystem() {
+            clearAllData();
+            createTestDoctor();
+            alert('System reset with test doctor!');
+        }
+        
+        // Auto-check on load
+        window.onload = function() {
+            checkLocalStorage();
+        };
+    </script>
+</body>
+</html>

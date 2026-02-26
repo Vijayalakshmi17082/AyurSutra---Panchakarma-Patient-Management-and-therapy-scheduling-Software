@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Dashboard</title>
+</head>
+<body>
+    <h1>Dashboard Test</h1>
+    <p>Testing the add treatment functionality...</p>
+    
+    <button onclick="testAddTreatment()">Test Add Treatment</button>
+    
+    <script>
+        function testAddTreatment() {
+            // Initialize sample patient data
+            const samplePatients = [
+                { 
+                    id: '101', 
+                    name: 'Test Patient', 
+                    age: 35, 
+                    gender: 'Male',
+                    phone: '9876543210',
+                    email: 'test@email.com',
+                    condition: 'Test condition',
+                    treatmentHistory: []
+                }
+            ];
+            
+            // Store in localStorage
+            localStorage.setItem('patients', JSON.stringify(samplePatients));
+            
+            // Redirect to dashboard
+            window.location.href = 'DoctorDashboard/dashboard.html';
+        }
+        
+        // Check if we have patients data
+        const patients = JSON.parse(localStorage.getItem('patients') || '[]');
+        console.log('Current patients in localStorage:', patients);
+    </script>
+</body>
+</html>
