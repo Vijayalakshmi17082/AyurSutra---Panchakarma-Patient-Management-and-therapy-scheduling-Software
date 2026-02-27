@@ -1,63 +1,112 @@
-AYURSUTRA – AI Powered Panchakarma Management Platform
-Technologies Used
+# AYURSUTRA – AI Powered Panchakarma Management Platform
 
-Frontend (Web Portal): HTML, CSS, JavaScript
+---
 
-Backend: Node.js (Express)
+## 🚀 Project Overview
 
-Database: MongoDB
+AYURSUTRA is an AI-powered healthcare management platform designed to modernize Panchakarma therapy centers by digitizing scheduling, monitoring, and patient communication.
 
-Mobile Application: Kotlin (Android Jetpack)
+The platform integrates web, mobile, backend, AI intelligence, and multi-channel notification systems into a unified healthcare ecosystem.
 
-AI Agent: Python (Scheduling logic & ML models)
+---
 
-Notifications: Firebase Cloud Messaging, Twilio (SMS & Voice), SMTP Email
+## 🛠 Technologies Used
 
-Key Features
+### 🌐 Frontend (Web Portal)
+- HTML
+- CSS
+- JavaScript
 
-Role-based web portal for doctors and administrators
+### ⚙ Backend
+- Node.js (Express.js)
 
-Android mobile application for patients
+### 🗄 Database
+- MongoDB
 
-AI-powered therapy scheduling and recovery monitoring
+### 📱 Mobile Application
+- Kotlin (Android Jetpack)
 
-Real-time dashboards and visual progress tracking
+### 🤖 AI Agent
+- Python (Scheduling Logic & Machine Learning Models)
 
-Multi-channel notifications (Push, SMS, Email, Voice calls)
+### 🔔 Notifications
+- Firebase Cloud Messaging (Push Notifications)
+- Twilio (SMS & Voice Calls)
+- SMTP Email Services
 
-Offline-first mobile design with automatic synchronization
+---
 
-Problem Statement
+## ✨ Key Features
 
-Traditional Panchakarma therapy centers depend heavily on manual scheduling and paper-based record management.
-This leads to inconsistent therapy planning, poor patient follow-up, limited progress tracking, and increased administrative workload.
+- Role-based web portal for doctors and administrators
+- Android mobile application for patients
+- AI-powered therapy scheduling
+- AI-driven recovery monitoring
+- Real-time dashboards and visual progress tracking
+- Multi-channel notifications (Push, SMS, Email, Voice)
+- Offline-first mobile design with automatic synchronization
+- Centralized digital patient record system
 
-Existing System Limitations
+---
 
-Manual scheduling of therapy sessions
+## ❗ Problem Statement
 
-No real-time recovery or progress monitoring
+Traditional Panchakarma therapy centers rely heavily on:
 
-Inefficient patient communication and reminder systems
+- Manual scheduling
+- Paper-based record management
+- Limited patient follow-up systems
 
-Lack of centralized digital infrastructure
+This results in:
+- Inconsistent therapy planning
+- Poor recovery tracking
+- Increased administrative workload
+- Communication inefficiencies
 
-High risk of data inconsistency and human error
+---
 
-Solution
+## ⚠ Existing System Limitations
 
-AYURSUTRA is an AI-powered healthcare management platform designed to modernize Panchakarma therapy delivery.
+- Manual therapy session scheduling
+- No real-time recovery or progress monitoring
+- Inefficient patient communication systems
+- Lack of centralized infrastructure
+- High risk of data inconsistency and human error
 
-The system integrates:
+---
 
-A web portal for doctors and administrators
+## 💡 Solution
 
-A patient-facing Android mobile application
+AYURSUTRA introduces an intelligent, AI-powered digital healthcare ecosystem by integrating:
 
-A Node.js backend with MongoDB
+- A role-based web portal for doctors and administrators
+- A patient-facing Android mobile application
+- Node.js backend with MongoDB database
+- Python-based AI agent for personalized therapy scheduling
+- Multi-channel automated notification system
 
-A Python-based AI agent for personalized therapy scheduling and monitoring
+---
 
-Multi-channel notification system for improved patient engagement
+## 🎯 Impact
 
-This solution automates therapy planning, enhances monitoring, improves communication efficiency, and reduces administrative overhead.
+- Automated therapy planning
+- Improved patient engagement
+- Real-time monitoring
+- Reduced administrative workload
+- Enhanced data accuracy and transparency
+
+---
+
+## 📌 Future Enhancements
+
+- Predictive health analytics
+- IoT integration for therapy tracking
+- AI-based health risk alerts
+- Cloud deployment with scalability optimization
+
+---
+
+## 👨‍💻 Developed By
+
+Your Name  
+AI & Full Stack Developer
